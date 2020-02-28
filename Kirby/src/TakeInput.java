@@ -36,7 +36,8 @@ public class TakeInput {
 					l++;
 				}
 			}
-
+ 
+			
 			sc.close(); // done with scanner
 			System.out.println(Arrays.deepToString(map));
 		} catch (FileNotFoundException e) {
