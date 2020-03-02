@@ -21,7 +21,7 @@ public class TakeInput {
 			char[][][] map = new char[rows][cols][levels];
 			int r = 0;
 			int c = 0;
-			int l = levels-1;
+			int l = 0;
 			char dot = '.';
 			while (sc.hasNextLine()) { // check a line exists in the input file
 				c = 0;
