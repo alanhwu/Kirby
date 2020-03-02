@@ -16,7 +16,7 @@ public class array {
 				int rows = sc.nextInt();
 				int cols = sc.nextInt();
 				int levels = sc.nextInt();
-				char[][][] map = new char[rows][cols][levels];
+				Spot map[][][]= new Spot[rows][cols][levels];
 				System.out.println(rows + " " + cols + " " + levels);
 				int r = 0;
 				int c = 0;
@@ -28,7 +28,7 @@ public class array {
 					while (c < cols) {
 						i.charAt(c); // NOTE format of input file is expected
 		
-							map[r][c][l] = i.charAt(c);
+							map[r][c][l].setData(i.charAt(c), r, c);
 
 						c++;
 					}
@@ -46,6 +46,19 @@ public class array {
 				e.printStackTrace();
 			}
 		}
+
 	}
+
+class Spot{
+	int row;
+	int col;
+	char letter;
+	boolean visited;
+	public void setData(char l, int r,int c){
+		letter = l;
+		   row = r;
+		   col = c;
+		 }
+}
 
 
