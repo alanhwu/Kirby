@@ -59,10 +59,24 @@ import java.io.File;
 								dequeue.add(queue.remove());
 								
 								if((dequeue.peek().getRow()-1 >=0) && (map[i-1][j][j].isVisited() == false) && (map[i-1][j][j].getLetter() != '@')){
-									queue.add(map[i-1][j][j]);
+									queue.add(map[i-1][j][j]); //N O RT H
 									map[i-1][j][j].setVisited(true);
 								}
 								
+								if((dequeue.peek().getRow()+1 >=rows) && (map[i+1][j][j].isVisited() == false) && (map[i+1][j][j].getLetter() != '@')){
+									queue.add(map[i+1][j][j]); // SO UT H 
+									map[i-1][j][j].setVisited(true);
+								}
+								
+								if((dequeue.peek().getCol()-1 >=0) && (map[i][j-1][j].isVisited() == false) && (map[i][j-1][j].getLetter() != '@')){
+									queue.add(map[i][j-1][j]); 
+									map[i][j-1][j].setVisited(true);
+								}
+								
+								if((dequeue.peek().getRow()+1 <=cols) && (map[i][j+1][j].isVisited() == false) && (map[i][j+1][j].getLetter() != '@')){
+									queue.add(map[i][j+1][j]);
+									map[i][j+1][j].setVisited(true);
+								}
 								
 								
 								
