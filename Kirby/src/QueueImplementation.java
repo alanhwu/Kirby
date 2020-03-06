@@ -73,7 +73,7 @@ import java.io.File;
 									map[i][j-1][j].setVisited(true);
 								}
 								
-								if((dequeue.peek().getRow()+1 <=cols) && (map[i][j+1][j].isVisited() == false) && (map[i][j+1][j].getLetter() != '@')){
+								if((dequeue.peek().getCol()+1 <=cols) && (map[i][j+1][j].isVisited() == false) && (map[i][j+1][j].getLetter() != '@')){
 									queue.add(map[i][j+1][j]);
 									map[i][j+1][j].setVisited(true);
 								}
