@@ -28,7 +28,7 @@ public class array {
 				String i = sc.next();
 				while (c < cols) {
 					i.charAt(c); // NOTE format of input file is expected
-					map[r][c][l] = new Spot(i.charAt(c), r, c);
+					map[r][c][l] = new Spot(i.charAt(c), r, c, l);
 					c++;
 				}
 				r++;
