@@ -55,18 +55,22 @@ public class QueueImplementation {
 					}
 				}
 			}
+			
+			
+	
 			for (int k = 0; k < levels; k++) {
 				for (int i = 0; i < rows; i++) {
 					for (int j = 0; j < cols; j++) {
+						queue.peek().setVisited(true);
 						dequeue.push(queue.pop());
 						int x = dequeue.peek().getRow();
 						int y = dequeue.peek().getCol();
 						int z = dequeue.peek().getFloor();
 						if ((x - 1 >= 0)
-								&& (map[x - 1][y][z].isVisited() == false)
+								&& (map[x - 1][y][z].isChecked() == false)
 								&& (map[x - 1][y][z].getLetter() != '@')) {
 							queue.push(map[x - 1][y][z]); // N O RT H
-							map[x - 1][y][z].setVisited(true);
+							map[x - 1][y][z].setChecked(true);
 							if (map[x - 1][y][z].getLetter() == 'c') {
 								Cake = new Spot('c', x - 1, y, z);
 								break;
@@ -74,10 +78,10 @@ public class QueueImplementation {
 						}
 
 						if ((x + 1 <= rows)
-								&& (map[x + 1][y][z].isVisited() == false)
+								&& (map[x + 1][y][z].isChecked() == false)
 								&& (map[x + 1][y][z].getLetter() != '@')) {
 							queue.push(map[x + 1][y][z]); // SO UT H
-							map[x + 1][y][z].setVisited(true);
+							map[x + 1][y][z].setChecked(true);
 							if (map[x + 1][y][z].getLetter() == 'c') {
 								Cake = new Spot('c', x + 1, y, z);
 								break;
@@ -85,10 +89,10 @@ public class QueueImplementation {
 						}
 
 						if ((y - 1 >= 0)
-								&& (map[x][y - 1][z].isVisited() == false)
+								&& (map[x][y - 1][z].isChecked() == false)
 								&& (map[x][y - 1][z].getLetter() != '@')) {
 							queue.push(map[x][y - 1][z]);
-							map[x][y - 1][z].setVisited(true);
+							map[x][y - 1][z].setChecked(true);
 							if (map[x][y - 1][z].getLetter() == 'c') {
 								Cake = new Spot('c', x, y - 1, z);
 								break;
@@ -96,10 +100,10 @@ public class QueueImplementation {
 						}
 
 						if ((y + 1 <= cols)
-								&& (map[x][y + 1][z].isVisited() == false)
+								&& (map[x][y + 1][z].isChecked() == false)
 								&& (map[x][y + 1][z].getLetter() != '@')) {
 							queue.push(map[x][y + 1][z]);
-							map[x][y + 1][z].setVisited(true);
+							map[x][y + 1][z].setChecked(true);
 							if (map[x][y + 1][z].getLetter() == 'c') {
 								Cake = new Spot('c', x, y + 1, z);
 								break;
@@ -123,7 +127,7 @@ public class QueueImplementation {
 	
 	public static void checker(Deque<Spot> queue){
 		for(int i=0; i< queue.size(); i++){
-			queue.peek();
+			System.out.println(queue.peek());
 			queue.pop();
 		}
 	}
