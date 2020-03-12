@@ -40,8 +40,8 @@ public class QueueImplementation {
 			}
 			sc.close(); // done with scanner
 
-			Deque<Spot> queue = new ArrayDeque<Spot>();
-			Deque<Spot> dequeue = new ArrayDeque<Spot>();
+			ArrayDeque<Spot> queue = new ArrayDeque<Spot>();
+			ArrayDeque<Spot> dequeue = new ArrayDeque<Spot>();
 
 			for (int k = 0; k < levels; k++) { // GO THROUGH THE ARRAY AND
 												// ENQUEUE THE OBJECT WITH K TO
@@ -61,12 +61,12 @@ public class QueueImplementation {
 			for (int k = 0; k < levels; k++) {
 				for (int i = 0; i < rows; i++) {
 					for (int j = 0; j < cols; j++) {
-						queue.peek().setVisited(true);
-						dequeue.push(queue.pop());
-						int x = dequeue.peek().getRow();
+						if(queue.size()>0){queue.peek().setVisited(true); //prepare to actually visit the first thing in the queue
+						dequeue.push(queue.pop()); //move from queue to dequeue
+						int x = dequeue.peek().getRow(); //check its attributes
 						int y = dequeue.peek().getCol();
 						int z = dequeue.peek().getFloor();
-						if ((x - 1 >= 0)
+						if ((x - 1 >= 0) //CHECK NORTH
 								&& (map[x - 1][y][z].isChecked() == false)
 								&& (map[x - 1][y][z].getLetter() != '@')) {
 							queue.push(map[x - 1][y][z]); // N O RT H
@@ -77,7 +77,7 @@ public class QueueImplementation {
 							}
 						}
 
-						if ((x + 1 <= rows)
+						if ((x + 1 < rows) //CHECK SOUTH
 								&& (map[x + 1][y][z].isChecked() == false)
 								&& (map[x + 1][y][z].getLetter() != '@')) {
 							queue.push(map[x + 1][y][z]); // SO UT H
@@ -88,18 +88,7 @@ public class QueueImplementation {
 							}
 						}
 
-						if ((y - 1 >= 0)
-								&& (map[x][y - 1][z].isChecked() == false)
-								&& (map[x][y - 1][z].getLetter() != '@')) {
-							queue.push(map[x][y - 1][z]);
-							map[x][y - 1][z].setChecked(true);
-							if (map[x][y - 1][z].getLetter() == 'c') {
-								Cake = new Spot('c', x, y - 1, z);
-								break;
-							}
-						}
-
-						if ((y + 1 <= cols)
+						if ((y + 1 < cols) //CHECK EAST
 								&& (map[x][y + 1][z].isChecked() == false)
 								&& (map[x][y + 1][z].getLetter() != '@')) {
 							queue.push(map[x][y + 1][z]);
@@ -110,12 +99,24 @@ public class QueueImplementation {
 							}
 						}
 						
-							checker(queue);
-							checker(dequeue);
-
+						if ((y - 1 >= 0) //CHECK WEST
+								&& (map[x][y - 1][z].isChecked() == false)
+								&& (map[x][y - 1][z].getLetter() != '@')) {
+							queue.push(map[x][y - 1][z]);
+							map[x][y - 1][z].setChecked(true);
+							if (map[x][y - 1][z].getLetter() == 'c') {
+								Cake = new Spot('c', x, y - 1, z);
+								break;
+							}
+						}
+						}
+							//checker(queue);
+							//checker(dequeue);	
 					}
 				}
+			
 			}
+			
 			System.out.println(Cake.getRow());
 			System.out.println(Cake.getCol());
 			System.out.println(Cake.getFloor());
