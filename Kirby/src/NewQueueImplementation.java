@@ -61,6 +61,7 @@ public class NewQueueImplementation {
 				boolean CakeFound = false;
 		while(CakeFound == false){
 						if(queue.size()>0){
+							System.out.println("dequeue is about to add: " + queue.peek().getRow() + " " + queue.peek().getCol());
 							dequeue.addLast(queue.peek());
 							queue.removeFirst();
 							int x = dequeue.peekLast().getRow(); //check its attributes
@@ -133,11 +134,11 @@ public class NewQueueImplementation {
 		}
 
 		public static void checker(Deque<Spot> queue){
-			for(int i=0; i< queue.size(); i++){
+			while(queue.size()>0){
 				System.out.println(queue.peek().getLetter() + " " + queue.peek().getRow() + " " + queue.peek().getCol());
 				System.out.println();
+				queue.pop();
 	
-				queue.removeFirst();
 			}
 		}
 	}
